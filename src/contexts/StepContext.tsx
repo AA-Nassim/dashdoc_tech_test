@@ -13,7 +13,13 @@ export const StepProvider = ({ children }: { children: ReactNode }) => {
   const [steps, setSteps] = useState<Step[]>([]);
 
   const addStep = (step: Step) => {
-    setSteps(prev => [...prev, step]);
+    setSteps(prev => {
+      // Only add if not already present
+      if (prev.some(([a, b]) => a === step[0] && b === step[1])) {
+        return prev;
+      }
+      return [...prev, step];
+    });
   };
 
   return (

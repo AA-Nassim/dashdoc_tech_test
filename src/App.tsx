@@ -1,3 +1,4 @@
+import Header from "./components/Header";
 import AdressSection from "./sections/AdressSection";
 import PathSection from "./sections/PathSection";
 import StepSection from "./sections/StepSection";
@@ -6,10 +7,13 @@ function App() {
 
 
   return (
-    <div className="flex flex-col lg:flex-row gap-5 p-5 w-full justify-around ">
-      <AdressSection />
-      <StepSection />
-      <PathSection />
+    <div className="flex flex-col gap-5 p-5 w-full">
+      <Header />
+      <div className="flex flex-col lg:flex-row gap-5 w-full justify-around ">
+        <AdressSection />
+        <StepSection />
+        <PathSection />
+      </div>
     </div>
   );
 }

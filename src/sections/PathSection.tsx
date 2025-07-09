@@ -1,4 +1,5 @@
 import AddPathForm from '../components/AddPathForm'
+import PathDisplayer from '../components/PathDisplayer'
 
 const PathSection = () => {
 
@@ -6,6 +7,7 @@ const PathSection = () => {
     return (
         <section className='section-container'>
             <AddPathForm  />
+            <PathDisplayer />
         </section>
     )
 }

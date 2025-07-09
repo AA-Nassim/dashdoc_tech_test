@@ -48,7 +48,7 @@ const AddStepForm = () => {
         >
             <div className='flex w-full flex-col sm:flex-row gap-2'>
                 <select
-                    className="flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={pickup}
                     onChange={handlePickupChange}
                     disabled={loading || addresses.length < 2}
@@ -68,7 +68,7 @@ const AddStepForm = () => {
                     )}
                 </select>
                 <select
-                    className="flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={dropoff}
                     onChange={handleDropoffChange}
                     disabled={loading || addresses.length < 2}

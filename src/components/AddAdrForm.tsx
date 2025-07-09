@@ -32,7 +32,7 @@ const AddAdrForm = () => {
             className="flex w-full items-ceter gap-2 p-4 bg-transparent border-b border-gray-200"
         >
             <textarea
-                className="flex-1 resize-none rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                className="bg-white flex-1 resize-none rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                 rows={1}
                 placeholder="Add an adress here"
                 value={adr}
