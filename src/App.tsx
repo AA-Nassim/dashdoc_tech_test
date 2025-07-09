@@ -1,16 +1,17 @@
-import { deliveryCheck } from './api/deliveryAPI';
-import './App.css'
+import AdressSection from "./sections/AdressSection";
+import PathSection from "./sections/PathSection";
+import StepSection from "./sections/StepSection";
 
 function App() {
 
-  const rep = deliveryCheck([["A", "B"], ["C", "D"]], ["A", "B", "C", "D"])
-  console.log(rep);
 
   return (
-    <>
-      bogosbinted
-    </>
-  )
+    <div className="flex flex-col lg:flex-row gap-5 p-5 w-full justify-around ">
+      <AdressSection />
+      <StepSection />
+      <PathSection />
+    </div>
+  );
 }
 
 export default App
