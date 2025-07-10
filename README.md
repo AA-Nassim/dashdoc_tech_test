@@ -13,6 +13,7 @@ This project is a web application to help users check if a delivery routes makes
 
 ## Key Features
 
+- **Unittests**: Used Unittest to test the python algorithm and Jest for the javascript version.
 - **React Context**: Used to manage and share user input across multiple components seamlessly.
 - **Three-Column Layout**:
     - **Column 1**: Register addresses.
