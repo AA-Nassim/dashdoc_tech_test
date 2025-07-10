@@ -18,6 +18,17 @@ export function deliveryCheck(
   deliveries: [string, string][],
   path: string[]
 ): string {
+
+  if ((deliveries.length == 0) || (path.length == 0)) {
+    const error: ErrorResponse = {
+      status: "error",
+      error_code: "input_null",
+      error_message: `The deliveries or the path is not set. Please check your inputs.`
+    };
+    return JSON.stringify(error);
+  }
+    
+  
   // Used to keep track of pickup and dropoff addresses
   const pickupSet = new Set<string>();
   const dropoffSet = new Set<string>();

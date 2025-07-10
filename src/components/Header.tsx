@@ -1,5 +1,6 @@
 import { deliveryCheck } from "../api/deliveryAPI"
 import { usePath } from "../contexts/PathContext"
+import { usePopUp } from "../contexts/PopUpContext"
 import { useSteps } from "../contexts/StepContext"
 
 
@@ -7,20 +8,26 @@ const Header = () => {
 
     const {steps} = useSteps()
     const {path} = usePath()
+    const {show} = usePopUp()
 
     const handleRunButton = () => {
         console.log(steps)
         console.log(path)
 
-        const result = deliveryCheck(steps, path)
+        const result = JSON.parse(deliveryCheck(steps, path))
         
         console.log("result : ")
         console.log(result)
+        if (result.status == "error")
+        show({
+            title: `error : ${result.error_code}`, 
+            content: result.error_message
+        })
     }
 
     return (
         <header
-            className=" inset-x-0 top-0 z-30  w-full  border border-gray-100 bg-blue-50 py-3 shadow backdrop-blur-lg ">
+            className=" inset-x-0 top-0  w-full  border border-gray-100 bg-blue-50 py-3 shadow backdrop-blur-lg ">
             <div className="px-4">
                 <div className="flex items-center justify-between">
                     <div className="flex shrink-0">
