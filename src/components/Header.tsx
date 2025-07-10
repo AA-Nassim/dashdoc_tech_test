@@ -7,8 +7,8 @@ import { useSteps } from "../contexts/StepContext"
 
 const Header = () => {
 
-    const { steps, resetSteps } = useSteps()
-    const { path, resetPath } = usePath()
+    const { steps } = useSteps()
+    const { path } = usePath()
     const {resetAddresses} = useAddresses()
     const { show } = usePopUp()
 
