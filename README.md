@@ -14,11 +14,10 @@ This project is a web application designed to help users manage delivery routes 
 ## Key Features
 
 - **React Context**: Used to manage and share user input across multiple components seamlessly.
-- **Three-Column Main Page**:
+- **Three-Column Layout**:
     - **Column 1**: Register addresses.
     - **Column 2**: Set up deliveries.
     - **Column 3**: Enter the delivery path.
-- **Header**: Provides access to run the delivery path checker.
 - **Pop-up Output**:
     - Displays errors if the input is invalid.
     - Shows step-by-step delivery cards if the path is correct.
@@ -26,13 +25,14 @@ This project is a web application designed to help users manage delivery routes 
 
 ## Getting Started
 
+You can access the project using this link hosted on github pages :  
 Follow these steps to set up and run the project locally:
 
 1. **Clone the repository**:
 
 ```bash
-git clone <your-repo-url>
-cd <your-repo-directory>
+git clone https://github.com/AA-Nassim/dashdoc_tech_test
+cd dashdoc_tech_test
 ```
 
 2. **Install dependencies**:
