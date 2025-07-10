@@ -1,17 +1,9 @@
 @import "tailwindcss";
 
 .section-container {
-    @apply flex flex-col items-center gap-4 bg-blue-50 w-full h-full rounded-lg border border-gray-200 shadow-sm
+    @apply flex flex-col items-center gap-4  
+    w-full md:max-h-[83vh] overflow-y-scroll 
+    bg-blue-50 rounded-lg border border-gray-200 shadow-sm
+
 }
 
-.form-container {
-    @apply flex flex-col items-center justify-center w-full gap-8
-}
-
-.form-input {
-    @apply w-full max-w-md p-4 bg-blue-100 rounded-lg shadow-md
-}
-
-.form-button {
-    @apply w-full max-w-md p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors
-}

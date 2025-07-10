@@ -29,7 +29,7 @@ const AddAdrForm = () => {
     return (
         <form
             onSubmit={handleSend}
-            className="flex w-full items-ceter gap-2 p-4 bg-transparent border-b border-gray-200"
+            className="flex w-full items-ceter gap-2 p-4 bg-blue-50 border-b border-gray-200"
         >
             <textarea
                 className="bg-white flex-1 resize-none rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"

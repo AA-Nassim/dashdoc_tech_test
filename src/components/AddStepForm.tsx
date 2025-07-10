@@ -62,9 +62,9 @@ const AddStepForm = () => {
     return (
         <form
             onSubmit={handleSend}
-            className="flex w-full items-center gap-2 p-4 bg-transparent border-b border-gray-200"
+            className="flex w-full sticky top-0 items-center gap-2 p-4 bg-transparent border-b border-gray-200"
         >
-            <div className='flex w-full flex-col sm:flex-row gap-2'>
+            <div className='flex w-full flex-col gap-2'>
                 <select
                     className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={pickup}

@@ -6,7 +6,7 @@ const StepDisplayer = () => {
     const { steps } = useSteps()
 
     return (
-        <div className="w-full flex flex-col px-4 pb-4 gap-4">
+        <div className="w-full max-h-full overflow-scroll flex flex-col px-4 pb-4 gap-4">
             {steps.map(([from, to], id) => (
                 <PairListItem key={id} from={from} to={to} />
             ))}

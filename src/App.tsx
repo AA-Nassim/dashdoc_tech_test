@@ -11,10 +11,10 @@ function App() {
   const {isOpen} = usePopUp()
 
   return (
-    <div className="flex flex-col gap-5 p-5 w-full">
+    <div className="flex flex-col gap-5 p-5 md:max-h-[100vh] md:overflow-hidden w-full">
       {isOpen? <PopUp /> : null}
       <Header />
-      <div className="flex flex-col lg:flex-row gap-5 w-full justify-around ">
+      <div className="flex flex-col md:flex-row gap-5 w-full justify-around ">
         <AdressSection />
         <StepSection />
         <PathSection />

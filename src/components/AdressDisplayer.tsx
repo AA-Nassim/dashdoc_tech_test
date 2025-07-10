@@ -7,7 +7,7 @@ const AdressDisplayer = () => {
     const {addresses} = useAddresses()
 
     return (
-        <div className="w-full flex flex-col px-4 pb-4 gap-4">
+        <div className="w-full max-h-full overflow-scroll flex flex-col px-4 pb-4 gap-4">
             {addresses.map((adr, id) => (
                 <ValueListItem key={id} content={adr} isAdr={true}/>
             ))}
