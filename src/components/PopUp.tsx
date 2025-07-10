@@ -73,9 +73,9 @@ const PopUp = () => {
                             </div>
                         </div>
 
-                        <div className='flex flex-col justify-center sm:flex-row gap-4 px-4 bg-blue-50 rounded-lg border border-gray-200  overflow-scroll w-full h-full py-5 '>
+                        <div className='flex flex-col  sm:flex-row gap-4 px-4 bg-blue-50 rounded-lg border border-gray-200  overflow-scroll w-full h-full py-5 '>
                             {popupContent.steps?.map((step, id) => (
-                                <StepCard key={id} address={step.address} action={step.action}/>
+                                <StepCard key={id} id={id + 1} address={step.address} action={step.action}/>
                             ))}
 
                         </div>

@@ -6,6 +6,7 @@ interface StepContextType {
   steps: Step[];
   addStep: (step: Step) => void;
   removeStep: (step: Step) => void;
+  resetSteps: () => void; // Added
 }
 
 const StepContext = createContext<StepContextType | undefined>(undefined);
@@ -27,8 +28,12 @@ export const StepProvider = ({ children }: { children: ReactNode }) => {
     setSteps(prev => prev.filter(([a, b]) => !(a === step[0] && b === step[1])));
   };
 
+  const resetSteps = () => {
+    setSteps([]);
+  };
+
   return (
-    <StepContext.Provider value={{ steps, addStep, removeStep }}>
+    <StepContext.Provider value={{ steps, addStep, removeStep, resetSteps }}>
       {children}
     </StepContext.Provider>
   );

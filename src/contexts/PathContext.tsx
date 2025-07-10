@@ -4,6 +4,7 @@ interface PathContextType {
   path: string[];
   addToPath: (adr: string) => void;
   removeFromPath: (adr: string) => void;
+  resetPath: () => void; // <-- Add this
 }
 
 const PathContext = createContext<PathContextType | undefined>(undefined);
@@ -21,8 +22,12 @@ export const PathProvider = ({ children }: { children: ReactNode }) => {
     setPath(prev => prev.filter(item => item !== adr));
   };
 
+  const resetPath = () => {
+    setPath([]);
+  };
+
   return (
-    <PathContext.Provider value={{ path, addToPath, removeFromPath }}>
+    <PathContext.Provider value={{ path, addToPath, removeFromPath, resetPath }}>
       {children}
     </PathContext.Provider>
   );

@@ -62,17 +62,22 @@ const AddStepForm = () => {
     return (
         <form
             onSubmit={handleSend}
-            className="flex w-full sticky top-0 items-center gap-2 p-4 bg-transparent border-b border-gray-200"
+            className="flex flex-col w-full gap-2 p-4 bg-transparent border-b border-gray-200"
         >
-            <div className='flex w-full flex-col gap-2'>
+            <label className=" text-sm font-semibold text-gray-700">
+                Step 2: Register your deliveries.
+            </label>
+            <div className='flex flex-row gap-4'>
+
+
                 <select
-                    className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    id="pickup-select"
+                    className="w-full bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={pickup}
                     onChange={handlePickupChange}
-                    disabled={loading || availableAddresses.length < 2}
+                    disabled={loading || availableAddresses.length < 1}
                 >
-
-                    {availableAddresses.length < 2 ? (
+                    {availableAddresses.length < 1 ? (
                         <option value="" disabled>
                             Not enough addresses
                         </option>
@@ -81,46 +86,45 @@ const AddStepForm = () => {
                             Select pickup
                         </option>
                     )}
-                    {availableAddresses.length > 1 ? (
+                    {
                         availableAddresses
-                            .filter(opt => opt !== dropoff)
+                            
                             .map(opt => (
                                 <option key={opt} value={opt}>
                                     {opt}
                                 </option>
                             ))
-                    ) : (null)}
+                    }
                 </select>
+
+
+
                 <select
-                    className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                    id="dropoff-select"
+                    className="w-full bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={dropoff}
                     onChange={handleDropoffChange}
                     disabled={loading || availableAddresses.length < 2}
                 >
 
-                    {availableAddresses.length < 2 ? (
-                        <option value="" disabled>
-                            Not enough addresses
-                        </option>
-                    ) : (
-                        <option value="" disabled>
-                            Select dropoff
-                        </option>
-                    )}
-                    {availableAddresses.length > 1 ? (
+                    <option value="" disabled>
+                        Select dropoff
+                    </option>
+
+                    {
                         availableAddresses
-                            .filter(opt => opt !== pickup)
+                            .filter(opt => opt )
                             .map(opt => (
                                 <option key={opt} value={opt}>
                                     {opt}
                                 </option>
-                            ))
-                    ) : (null)}
+                            ))}
                 </select>
+
             </div>
             <button
                 type="submit"
-                className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
+                className="blue-btn w-full"
                 disabled={
                     !pickup || !dropoff || pickup === dropoff || loading || availableAddresses.length < 2
                 }

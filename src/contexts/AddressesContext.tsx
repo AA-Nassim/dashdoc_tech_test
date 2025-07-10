@@ -6,14 +6,15 @@ interface AddressesContextType {
   addresses: string[];
   addAddress: (adr: string) => void;
   removeAddress: (adr: string) => void;
+  resetAddresses: () => void;
 }
 
 const AddressesContext = createContext<AddressesContextType | undefined>(undefined);
 
 export const AddressesProvider = ({ children }: { children: ReactNode }) => {
   const [addresses, setAddresses] = useState<string[]>([]);
-  const { removeFromPath } = usePath();
-  const { removeStep, steps } = useSteps();
+  const { removeFromPath, resetPath } = usePath();
+  const { removeStep, steps, resetSteps } = useSteps();
 
   const addAddress = (adr: string) => {
     if (adr.trim() && !addresses.includes(adr.trim())) {
@@ -31,17 +32,21 @@ export const AddressesProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const resetAddresses = () => {
+    setAddresses([]);
+    resetPath();
+    resetSteps();
+  };
+
   return (
-    <AddressesContext.Provider value={{ addresses, addAddress, removeAddress }}>
+    <AddressesContext.Provider value={{ addresses, addAddress, removeAddress, resetAddresses }}>
       {children}
     </AddressesContext.Provider>
   );
 };
 
 export const useAddresses = () => {
-  const context = useContext(AddressesContext);
-  if (!context) {
-    throw new Error("useAddresses must be used within an AddressesProvider");
-  }
-  return context;
+  const ctx = useContext(AddressesContext);
+  if (!ctx) throw new Error("useAddresses must be used within an AddressesProvider");
+  return ctx;
 };
