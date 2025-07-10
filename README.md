@@ -25,7 +25,7 @@ This project is a web application designed to help users manage delivery routes 
 
 ## Getting Started
 
-You can access the project using this link hosted on github pages :  
+You can access the project using this link hosted on github pages : https://aa-nassim.github.io/dashdoc_tech_test/ 
 Follow these steps to set up and run the project locally:
 
 1. **Clone the repository**:
