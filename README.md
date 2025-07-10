@@ -2,12 +2,12 @@
 
 ## Overview
 
-This project is a web application designed to help users manage delivery routes efficiently. It features a modular architecture with both backend algorithms and a modern React-based frontend. The application allows users to register addresses, set up deliveries, and verify delivery paths with instant feedback.
+This project is a web application to help users check if a delivery routes makes sense. It features a React-based frontend and a python algorithm that has been translated to js to simulate the backend. 
 
 ## Folder Structure
 
 - **algo_py**: Contains the core algorithm implemented in Python.
-- **api**: Houses the same algorithm translated into JavaScript for backend/API use.
+- **api**: Houses the same algorithm translated into JavaScript.
 - **src**: Includes all frontend files for the web application.
 
 
