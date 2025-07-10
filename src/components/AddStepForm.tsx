@@ -44,19 +44,19 @@ const AddStepForm = () => {
     };
 
     const handlePickupChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        if (e.target.value === dropoff) 
+            setDropoff(pickup);
+        
         setPickup(e.target.value);
-        if (e.target.value === dropoff) {
-            const nextDropoff = availableAddresses.find(opt => opt !== e.target.value) || "";
-            setDropoff(nextDropoff);
-        }
+        
     };
 
     const handleDropoffChange = (e: ChangeEvent<HTMLSelectElement>) => {
+        if (e.target.value === pickup) 
+            setPickup(dropoff);
+        
         setDropoff(e.target.value);
-        if (e.target.value === pickup) {
-            const nextPickup = availableAddresses.find(opt => opt !== e.target.value) || "";
-            setPickup(nextPickup);
-        }
+        
     };
 
     return (

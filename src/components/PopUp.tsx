@@ -8,16 +8,16 @@ const PopUp = () => {
         return (
             <div className="fixed z-50 inset-0 overflow-y-auto">
                 <div className="flex px-4 bg-gray-500/50 h-screen w-screen items-center justify-center  text-center ">
-                    
+
                     <div className="flex flex-col gap-4 bg-white rounded-lg p-4 text-left overflow-hidden shadow-xl transform transition-all max-h-[80%] sm:w-full sm:max-w-[50%] "
                         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                        
+
                         <div>
                             <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
                                 <svg className="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" aria-hidden="true">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                        d="M5 13l4 4L19 7" />
+                                        d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </div>
                             <div className="mt-3 text-center sm:mt-5">
@@ -49,10 +49,10 @@ const PopUp = () => {
         return (
             <div className="fixed z-50 inset-0 overflow-y-auto">
                 <div className="flex bg-gray-500/50 h-screen w-screen items-center justify-center  text-center ">
-                    
+
                     <div className="flex flex-col gap-4 bg-white rounded-lg p-4 text-left overflow-hidden shadow-xl transform transition-all max-h-[80%] sm:w-full sm:max-w-[80%] "
                         role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-                        
+
                         <div>
                             <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-blue-100">
                                 <svg className="h-6 w-6 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -75,7 +75,7 @@ const PopUp = () => {
 
                         <div className='flex flex-col  sm:flex-row gap-4 px-4 bg-blue-50 rounded-lg border border-gray-200  overflow-scroll w-full h-full py-5 '>
                             {popupContent.steps?.map((step, id) => (
-                                <StepCard key={id} id={id + 1} address={step.address} action={step.action}/>
+                                <StepCard key={id} id={id + 1} address={step.address} action={step.action} />
                             ))}
 
                         </div>
