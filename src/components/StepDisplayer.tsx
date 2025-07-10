@@ -8,7 +8,7 @@ const StepDisplayer = () => {
     return (
         <div className="w-full flex flex-col px-4 pb-4 gap-4">
             {steps.map(([from, to], id) => (
-                <PairListItem key={id} id={id} from={from} to={to} />
+                <PairListItem key={id} from={from} to={to} />
             ))}
         </div>
     )

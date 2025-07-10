@@ -1,10 +1,18 @@
+import { useSteps } from "../contexts/StepContext"
+
 type PairListItemProps = {
-    id: number,
     from: string,
     to: string
 }
 
-const PairListItem:React.FC<PairListItemProps> = ({id, from, to}) => {
+const PairListItem:React.FC<PairListItemProps> = ({ from, to}) => {
+
+    const {removeStep} = useSteps()
+
+    const handleDelete = () => {
+        removeStep([from, to])
+    }
+
     return (
         <div className="flex flex-row items-center w-full py-2 px-4  
         border-1 bg-white border-gray-400 rounded-lg">
@@ -15,7 +23,7 @@ const PairListItem:React.FC<PairListItemProps> = ({id, from, to}) => {
             <button
                 type="button"
                 aria-label="Delete"
-                //onClick={}
+                onClick={handleDelete}
                 className="w-10 h-10 hover:bg-gray-300 rounded group text-gray-400 hover:text-red-600"
             >
                 <svg

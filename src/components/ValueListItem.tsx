@@ -1,9 +1,24 @@
+import { useAddresses } from "../contexts/AddressesContext"
+import { usePath } from "../contexts/PathContext"
+
 type ValueListItemProps = {
-    id: number, 
     content: string, 
+    isAdr?: boolean 
 }
 
-const ValueListItem:React.FC<ValueListItemProps> = ({id, content}) => {
+const ValueListItem:React.FC<ValueListItemProps> = ({content, isAdr}) => {
+
+    const {removeAddress} = useAddresses()
+    const {removeFromPath} = usePath()
+
+    const handleDeleteAdr = () => {
+        removeAddress(content)
+    }
+
+    const handleDeletePath = () => {
+        removeFromPath(content)
+    }   
+
     return (
         <div className="w-full py-2 px-4  
         border-1 bg-white shadow-sm border-gray-400 rounded-lg flex items-center justify-between">
@@ -11,7 +26,7 @@ const ValueListItem:React.FC<ValueListItemProps> = ({id, content}) => {
             <button
                 type="button"
                 aria-label="Delete"
-                //onClick={}
+                onClick={() => {isAdr? handleDeleteAdr() : handleDeletePath()}}
                 className="w-8 h-8 hover:bg-gray-300 rounded group text-gray-400 hover:text-red-600"
             >
                 <svg

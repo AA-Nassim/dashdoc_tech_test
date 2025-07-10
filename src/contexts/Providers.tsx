@@ -4,10 +4,10 @@ import { PathProvider } from "./PathContext";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => (
   <StepProvider>
-    <AddressesProvider>
-      <PathProvider>
+    <PathProvider>
+      <AddressesProvider>
         {children}
-      </PathProvider>
-    </AddressesProvider>
+      </AddressesProvider>
+    </PathProvider>
   </StepProvider>
 );

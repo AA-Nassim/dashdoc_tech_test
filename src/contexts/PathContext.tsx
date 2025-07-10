@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, type ReactNode } from "reac
 interface PathContextType {
   path: string[];
   addToPath: (adr: string) => void;
+  removeFromPath: (adr: string) => void;
 }
 
 const PathContext = createContext<PathContextType | undefined>(undefined);
@@ -16,8 +17,12 @@ export const PathProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const removeFromPath = (adr: string) => {
+    setPath(prev => prev.filter(item => item !== adr));
+  };
+
   return (
-    <PathContext.Provider value={{ path, addToPath }}>
+    <PathContext.Provider value={{ path, addToPath, removeFromPath }}>
       {children}
     </PathContext.Provider>
   );

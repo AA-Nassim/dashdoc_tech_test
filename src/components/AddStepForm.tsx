@@ -1,16 +1,34 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useEffect, useState, type ChangeEvent, type FormEvent } from 'react';
 import { useSteps } from '../contexts/StepContext';
 import { useAddresses } from '../contexts/AddressesContext';
 
 
 const AddStepForm = () => {
-    
-    const {addStep} = useSteps()
-    const {addresses} = useAddresses()
+    const { addStep, steps } = useSteps();
+    const { addresses } = useAddresses();
 
-    const [pickup, setPickup] = useState(addresses[0] || "");
-    const [dropoff, setDropoff] = useState(addresses.length > 1 ? addresses[1] : "");
+    // addresses already used in steps
+    const usedAddresses = steps.reduce<string[]>((acc, [a, b]) => {
+        acc.push(a, b);
+        return acc;
+    }, []);
+
+    // Only allow addresses not already used in any step
+    const availableAddresses = addresses.filter(addr => !usedAddresses.includes(addr));
+
+    const [pickup, setPickup] = useState(availableAddresses[0] || "");
+    const [dropoff, setDropoff] = useState(availableAddresses.length > 1 ? availableAddresses[1] : "");
     const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        // Reset pickup/dropoff if they are no longer available
+        if (!availableAddresses.includes(pickup)) {
+            setPickup("");
+        }
+        if (!availableAddresses.includes(dropoff)) {
+            setDropoff("");
+        }
+    }, [availableAddresses]);
 
     const handleSend = async (e: FormEvent) => {
         e.preventDefault();
@@ -18,6 +36,8 @@ const AddStepForm = () => {
         setLoading(true);
         try {
             addStep([pickup, dropoff]);
+            setPickup("");
+            setDropoff("");
         } finally {
             setLoading(false);
         }
@@ -25,18 +45,16 @@ const AddStepForm = () => {
 
     const handlePickupChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setPickup(e.target.value);
-        // If dropoff is now the same as pickup, auto-select a different dropoff if possible
         if (e.target.value === dropoff) {
-            const nextDropoff = addresses.find(opt => opt !== e.target.value) || "";
+            const nextDropoff = availableAddresses.find(opt => opt !== e.target.value) || "";
             setDropoff(nextDropoff);
         }
     };
 
     const handleDropoffChange = (e: ChangeEvent<HTMLSelectElement>) => {
         setDropoff(e.target.value);
-        // If pickup is now the same as dropoff, auto-select a different pickup if possible
         if (e.target.value === pickup) {
-            const nextPickup = addresses.find(opt => opt !== e.target.value) || "";
+            const nextPickup = availableAddresses.find(opt => opt !== e.target.value) || "";
             setPickup(nextPickup);
         }
     };
@@ -51,49 +69,60 @@ const AddStepForm = () => {
                     className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={pickup}
                     onChange={handlePickupChange}
-                    disabled={loading || addresses.length < 2}
+                    disabled={loading || availableAddresses.length < 2}
                 >
-                    {addresses.length < 2 ? (
+
+                    {availableAddresses.length < 2 ? (
                         <option value="" disabled>
                             Not enough addresses
                         </option>
                     ) : (
-                        addresses
+                        <option value="" disabled>
+                            Select pickup
+                        </option>
+                    )}
+                    {availableAddresses.length > 1 ? (
+                        availableAddresses
                             .filter(opt => opt !== dropoff)
                             .map(opt => (
                                 <option key={opt} value={opt}>
                                     {opt}
                                 </option>
                             ))
-                    )}
+                    ) : (null)}
                 </select>
                 <select
                     className="bg-white flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={dropoff}
                     onChange={handleDropoffChange}
-                    disabled={loading || addresses.length < 2}
+                    disabled={loading || availableAddresses.length < 2}
                 >
-                    {addresses.length < 2 ? (
+
+                    {availableAddresses.length < 2 ? (
                         <option value="" disabled>
                             Not enough addresses
                         </option>
                     ) : (
-                        addresses
+                        <option value="" disabled>
+                            Select dropoff
+                        </option>
+                    )}
+                    {availableAddresses.length > 1 ? (
+                        availableAddresses
                             .filter(opt => opt !== pickup)
                             .map(opt => (
                                 <option key={opt} value={opt}>
                                     {opt}
                                 </option>
                             ))
-                    )}
+                    ) : (null)}
                 </select>
             </div>
-
             <button
                 type="submit"
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition disabled:opacity-50"
                 disabled={
-                    !pickup || !dropoff || pickup === dropoff || loading || addresses.length < 2
+                    !pickup || !dropoff || pickup === dropoff || loading || availableAddresses.length < 2
                 }
             >
                 {loading ? "Adding ..." : "Add"}

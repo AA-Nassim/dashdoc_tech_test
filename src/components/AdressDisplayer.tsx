@@ -9,7 +9,7 @@ const AdressDisplayer = () => {
     return (
         <div className="w-full flex flex-col px-4 pb-4 gap-4">
             {addresses.map((adr, id) => (
-                <ValueListItem key={id} id={id} content={adr} />
+                <ValueListItem key={id} content={adr} isAdr={true}/>
             ))}
         </div>
     )
